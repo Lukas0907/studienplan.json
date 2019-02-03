@@ -173,8 +173,8 @@ def parse_studienplan(text):
                     # a list of LVAs. Just skip the description.
                     line = next_line(lines)
                     state = State.MODUL_NAME
-                elif len(modul["lvas"]) == 0:
-                    # There might be some text before the list of LVAs that we just
+                elif len(modul["lvas"]) == 0 or line in ["Verpflichtend:", "Wahl:"]:
+                    # There might be some text before/in the list of LVAs that we just
                     # skip.
                     line = next_line(lines, strip=False)
                 else:
