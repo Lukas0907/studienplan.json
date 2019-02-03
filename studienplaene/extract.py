@@ -39,7 +39,6 @@ class State(enum.Enum):
     MODUL_REGELARBEITSAUFWAND = 19
     MODUL_LERNERGEBNISSE = 20
     MODUL_LVAS = 21
-    MODUL_LVA_DESC = 22
     LEHRVERANSTALTUNGSTYPEN = 23
     SEMESTEREINTEILUNG = 24
     SEMESTEREINTEILUNG_SEMESTER = 25
@@ -151,13 +150,9 @@ def parse_studienplan(text):
                 state = State.MODUL_LERNERGEBNISSE
                 line = next_line(lines)
             elif state == State.MODUL_LERNERGEBNISSE:
-                if line == "Lehrveranstaltungen des Moduls:":
+                if line.startswith("Lehrveranstaltungen des Moduls:"):
                     state = State.MODUL_LVAS
                     line = next_line(lines, strip=False)
-                elif line.startswith("Lehrveranstaltungen des Moduls:"):
-                    # In case the Modul doesn't have a list but a textual description.
-                    state = State.MODUL_LVA_DESC
-                    line = next_line(lines)
                 else:
                     modul["lernergebnisse"].append(line)
                     line = next_line(lines)
@@ -167,30 +162,21 @@ def parse_studienplan(text):
                     # LVA name, new LVA name as well as new modules.
                     modul["lvas"].append(line.strip())
                     line = next_line(lines, strip=False)
-                elif line.startswith("            "):
+                elif line.startswith("            ") and line.strip():
                     # LVA name goes over two lines.
                     modul["lvas"][-1] += " " + line.strip()
                     line = next_line(lines, strip=False)
-                else:
-                    state = State.MODUL_NAME
-            elif state == State.MODUL_LVA_DESC:
-                if "zentralen Wahlfachkatalog der TU Wien" in line:
+                elif "zentralen Wahlfachkatalog der TU Wien" in line:
                     # The Modul "Freie Wahlfächer und Transferable Skills" doesn't have
                     # a list of LVAs. Just skip the description.
-                    state = State.MODUL_NAME
                     line = next_line(lines)
-                elif "aus folgender Liste zu wählen" in line:
-                    # The Modul "Life Sciences in der Medizin" has an extra text
-                    # before the list of LVAs.
-                    state = State.MODUL_LVAS
-                    line = next_line(lines, strip=False)
-                elif "die übrigen Pflichtlehrveranstaltungen" in line:
-                    # The Modul "Software Engineering und Projektmanagement" has an
-                    # extra text before the list of LVAs.
-                    state = State.MODUL_LVAS
+                    state = State.MODUL_NAME
+                elif len(modul["lvas"]) == 0:
+                    # There might be some text before the list of LVAs that we just
+                    # skip.
                     line = next_line(lines, strip=False)
                 else:
-                    line = next_line(lines)
+                    state = State.MODUL_NAME
             elif state == State.LEHRVERANSTALTUNGSTYPEN:
                 # A lot of text inbetween is skipped.
                 if line.startswith("D. Semestereinteilung der Lehrveranstaltungen"):
