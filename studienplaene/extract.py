@@ -1,6 +1,8 @@
 import enum
+import json
 import re
 import subprocess
+import sys
 
 import dateutil.parser
 
@@ -371,15 +373,14 @@ def condense_studienplan(studienplan):
         assert semestereinteilung == []
     del studienplan["semestereinteilung"]
 
-    import pdb
-    pdb.set_trace()
-
 
 def main():
-    text = cleanup_text(read_pdf("BachelorSoftwareandInformationEngineering.pdf"))
+    text = cleanup_text(read_pdf(sys.argv[1]))
     studienplan = parse_studienplan(text)
     normalize_studienplan(studienplan)
     condense_studienplan(studienplan)
+    with open(sys.argv[1].replace("pdf", "json"), "w") as f:
+        json.dump(studienplan["pruefungsfaecher"], f)
 
 
 if __name__ == "__main__":
