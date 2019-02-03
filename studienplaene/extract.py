@@ -11,11 +11,6 @@ class State(enum.Enum):
     BESCHLUSS_DATUM = 5
     GUELTIG_DATUM = 6
     INHALTSVERZEICHNIS = 7
-    GRUNDLAGE = 8
-    QUALIFIKATIONSPROFIL = 9
-    DAUER_UMFANG = 10
-    ZULASSUNG = 11
-    AUFBAU_DES_STUDIUMS = 12
     PRUEFUNGSFAECHER = 13
     PRUEFUNGSFACH_TITLE = 14
     PRUEFUNGSFACH_MODUL = 15
@@ -45,7 +40,7 @@ def next_line(lines, skip_empty=True, strip=True):
             return line
 
 
-def parse(text):
+def parse_studienplan(text):
     state = State.PREAMBLE
     lines = iter(text.splitlines())
     studienplan = {}
@@ -83,26 +78,6 @@ def parse(text):
                 state = State.INHALTSVERZEICHNIS
                 line = next_line(lines)
             elif state == State.INHALTSVERZEICHNIS:
-                if line.startswith("1. Grundlage und Geltungsbereich"):
-                    state = State.GRUNDLAGE
-                line = next_line(lines)
-            elif state == State.GRUNDLAGE:
-                if line.startswith("2. Qualifikationsprofil"):
-                    state = State.QUALIFIKATIONSPROFIL
-                line = next_line(lines)
-            elif state == State.QUALIFIKATIONSPROFIL:
-                if line.startswith("3. Dauer und Umfang"):
-                    state = State.DAUER_UMFANG
-                line = next_line(lines)
-            elif state == State.DAUER_UMFANG:
-                if line.startswith("4. Zulassung zum"):
-                    state = State.ZULASSUNG
-                line = next_line(lines)
-            elif state == State.ZULASSUNG:
-                if line.startswith("5. Aufbau des Studiums"):
-                    state = State.AUFBAU_DES_STUDIUMS
-                line = next_line(lines)
-            elif state == State.AUFBAU_DES_STUDIUMS:
                 if line.startswith("Prüfungsfächer und zugehörige Module"):
                     state = State.PRUEFUNGSFAECHER
                 line = next_line(lines)
@@ -278,7 +253,7 @@ def main():
     import pdb
 
     pdb.set_trace()
-    parse(text)
+    parse_studienplan(text)
 
 
 main()
