@@ -2,6 +2,25 @@ import enum
 import re
 import subprocess
 
+import dateutil.parser
+
+
+class GermanParserInfo(dateutil.parser.parserinfo):
+    MONTHS = [
+        ("Jan", "Januar", "Jänner"),
+        ("Feb", "Februar"),
+        ("Mär", "Mrz", "März"),
+        ("Apr", "April"),
+        ("Mai",),
+        ("Jun", "Juni"),
+        ("Jul", "Juli"),
+        ("Aug", "August"),
+        ("Sep", "Sept", "September"),
+        ("Okt", "Oktober"),
+        ("Nov", "November"),
+        ("Dez", "Dezember"),
+    ]
+
 
 class State(enum.Enum):
     PREAMBLE = 1
@@ -12,11 +31,11 @@ class State(enum.Enum):
     GUELTIG_DATUM = 6
     INHALTSVERZEICHNIS = 7
     PRUEFUNGSFAECHER = 13
-    PRUEFUNGSFACH_TITLE = 14
+    PRUEFUNGSFACH_NAME = 14
     PRUEFUNGSFACH_MODUL = 15
     KURZBESCHREIBUNG_MODULE = 16
     MODULBESCHREIBUNGEN = 17
-    MODUL_TITLE = 18
+    MODUL_NAME = 18
     MODUL_REGELARBEITSAUFWAND = 19
     MODUL_LERNERGEBNISSE = 20
     MODUL_LVAS = 21
@@ -64,12 +83,14 @@ def parse_studienplan(text):
                 state = State.STUDIUM_KENNZAHL
                 line = next_line(lines)
             elif state == State.STUDIUM_KENNZAHL:
-                studienplan["studium_kennzahl"] = line
+                studienplan["studienkennzahl"] = line
                 state = State.BESCHLUSS_DATUM
                 line = next_line(lines)
             elif state == State.BESCHLUSS_DATUM:
                 if line.startswith("mit Wirksamkeit"):
-                    studienplan["beschluss_datum"] = line.replace("mit Wirksamkeit ", "")
+                    studienplan["beschluss_datum"] = line.replace(
+                        "mit Wirksamkeit ", ""
+                    )
                     state = State.GUELTIG_DATUM
                 line = next_line(lines)
             elif state == State.GUELTIG_DATUM:
@@ -78,6 +99,7 @@ def parse_studienplan(text):
                 state = State.INHALTSVERZEICHNIS
                 line = next_line(lines)
             elif state == State.INHALTSVERZEICHNIS:
+                # A lot of text inbetween is skipped.
                 if line.startswith("Prüfungsfächer und zugehörige Module"):
                     state = State.PRUEFUNGSFAECHER
                 line = next_line(lines)
@@ -85,13 +107,13 @@ def parse_studienplan(text):
                 if line.endswith("mindestens 180 ECTS ergibt."):
                     studienplan["pruefungsfaecher"] = []
                     pruefungsfaecher = studienplan["pruefungsfaecher"]
-                    state = State.PRUEFUNGSFACH_TITLE
+                    state = State.PRUEFUNGSFACH_NAME
                 line = next_line(lines)
-            elif state == State.PRUEFUNGSFACH_TITLE:
+            elif state == State.PRUEFUNGSFACH_NAME:
                 if line == "Kurzbeschreibung der Module":
                     state = State.KURZBESCHREIBUNG_MODULE
                 else:
-                    pruefungsfach = {"title": line, "module": []}
+                    pruefungsfach = {"name": line, "module": []}
                     pruefungsfaecher.append(pruefungsfach)
                     state = State.PRUEFUNGSFACH_MODUL
                 line = next_line(lines)
@@ -100,7 +122,7 @@ def parse_studienplan(text):
                     pruefungsfach["module"].append(line)
                     line = next_line(lines)
                 else:
-                    state = State.PRUEFUNGSFACH_TITLE
+                    state = State.PRUEFUNGSFACH_NAME
             elif state == State.KURZBESCHREIBUNG_MODULE:
                 if line.startswith("A. Modulbeschreibungen"):
                     state = State.MODULBESCHREIBUNGEN
@@ -109,15 +131,17 @@ def parse_studienplan(text):
                 if line.endswith("ist in Anhang B im Detail erläutert."):
                     studienplan["modulbeschreibungen"] = []
                     modulbeschreibungen = studienplan["modulbeschreibungen"]
-                    state = State.MODUL_TITLE
+                    state = State.MODUL_NAME
                 line = next_line(lines)
-            elif state == State.MODUL_TITLE:
+            elif state == State.MODUL_NAME:
                 if line.startswith("B. Lehrveranstaltungstypen"):
                     state = State.LEHRVERANSTALTUNGSTYPEN
                 else:
                     modul = {
-                        "title": line, "lvas": [], "regelarbeitsaufwand": None,
-                        "lernergebnisse": []
+                        "name": line,
+                        "lvas": [],
+                        "regelarbeitsaufwand": None,
+                        "lernergebnisse": [],
                     }
                     modulbeschreibungen.append(modul)
                     state = State.MODUL_REGELARBEITSAUFWAND
@@ -140,22 +164,23 @@ def parse_studienplan(text):
             elif state == State.MODUL_LVAS:
                 if re.match(r"^( \d|\d\d),\d", line):
                     # Line is not stripped so we can distinguish between continuing
-                    # LVA titles,  new LVA titles as well as new modules.
+                    # LVA name,  new LVA name as well as new modules.
                     modul["lvas"].append(line.strip())
                     line = next_line(lines, strip=False)
                 elif line.startswith("            "):
-                    # LVA title goes over two lines.
+                    # LVA name goes over two lines.
                     modul["lvas"][-1] += " " + line.strip()
                     line = next_line(lines, strip=False)
                 else:
-                    state = State.MODUL_TITLE
+                    state = State.MODUL_NAME
             elif state == State.MODUL_LVA_DESC:
                 # The Modul "Freie Wahlfächer und Transferable Skills" doesn't have a
                 # list of LVAs. Just skip the description.
                 if "zentralen Wahlfachkatalog der TU Wien" in line:
-                    state = State.MODUL_TITLE
+                    state = State.MODUL_NAME
                 line = next_line(lines)
             elif state == State.LEHRVERANSTALTUNGSTYPEN:
+                # A lot of text inbetween is skipped.
                 if line.startswith("D. Semestereinteilung der Lehrveranstaltungen"):
                     state = State.SEMESTEREINTEILUNG
                     studienplan["semestereinteilung"] = {}
@@ -186,12 +211,10 @@ def parse_studienplan(text):
     except StopIteration:
         pass
 
-    import pdb
-    pdb.set_trace()
     return studienplan
 
 
-def read_from_pdf():
+def read_pdf(filename):
     result = subprocess.run(
         [
             "pdftotext",
@@ -205,7 +228,7 @@ def read_from_pdf():
             "460",
             "-H",
             "650",
-            "BachelorSoftwareandInformationEngineering.pdf",
+            filename,
             "-",
         ],
         encoding="utf8",
@@ -221,7 +244,7 @@ def dehyphenate(text):
 
 
 def fix_quotes(text):
-    text = text.replace("“", "\"")
+    text = text.replace("“", '"')
     fixed_text = []
     prev_line = None
 
@@ -242,18 +265,62 @@ def fix_quotes(text):
     return "\n".join(fixed_text[1:])
 
 
-def cleanup(text):
+def cleanup_text(text):
     text = fix_quotes(text)
     text = dehyphenate(text)
     return text
 
 
-def main():
-    text = cleanup(read_from_pdf())
+def normalize_studienplan(studienplan):
+    studienplan["beschluss_datum"] = dateutil.parser.parse(
+        studienplan["beschluss_datum"], GermanParserInfo()
+    ).date()
+    studienplan["gueltig_datum"] = dateutil.parser.parse(
+        studienplan["gueltig_datum"], GermanParserInfo()
+    ).date()
+    studienplan["studienkennzahl"] = studienplan["studienkennzahl"].replace(" ", "")
+
+    for pruefungsfach in studienplan["pruefungsfaecher"]:
+        for i, modul in enumerate(pruefungsfach["module"]):
+            modul = re.match(
+                r'(?P<wahl>\*)?(?P<name>.*)\s+\((?P<ects>.*) ECTS\)', modul
+            ).groupdict()
+            modul["wahl"] = modul["wahl"] == "*"
+            pruefungsfach["module"][i] = modul
+
+    for semester, lvas in studienplan["semestereinteilung"].items():
+        for i, lva in enumerate(lvas):
+            lva = re.match(
+                r"(?P<steop_constrained>\*)?\s*(?P<ects>\d{1,2},\d)\s*"
+                + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
+                lva,
+            ).groupdict()
+            lva["steop_constrained"] = lva["steop_constrained"] == "*"
+            lvas[i] = lva
+
+    for modul in studienplan["modulbeschreibungen"]:
+        modul["regelarbeitsaufwand"] = {
+            "ects": modul["regelarbeitsaufwand"].replace(" ECTS", "")
+        }
+        modul["lernergebnisse"] = (
+            "\n".join(modul["lernergebnisse"]).replace("Lernergebnisse:", "").strip()
+        )
+        for i, lva in enumerate(modul["lvas"]):
+            lva = re.match(
+                r"(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
+                + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
+                lva,
+            ).groupdict()
+            modul["lvas"][i] = lva
+
     import pdb
-
     pdb.set_trace()
-    parse_studienplan(text)
 
 
-main()
+def main():
+    text = cleanup_text(read_pdf("BachelorSoftwareandInformationEngineering.pdf"))
+    normalize_studienplan(parse_studienplan(text))
+
+
+if __name__ == "__main__":
+    main()
