@@ -265,9 +265,28 @@ def fix_quotes(text):
     return "\n".join(fixed_text[1:])
 
 
+def remove_footnotes(text):
+    fixed_text = []
+    in_footnote = False
+
+    for line in text.splitlines():
+        if re.match(r"^ \d$", line):
+            in_footnote = True
+            continue
+
+        if in_footnote and line.startswith("   "):
+            continue
+
+        in_footnote = False
+        fixed_text.append(line)
+
+    return "\n".join(fixed_text)
+
+
 def cleanup_text(text):
     text = fix_quotes(text)
     text = dehyphenate(text)
+    text = remove_footnotes(text)
     return text
 
 
