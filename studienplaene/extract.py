@@ -272,6 +272,7 @@ def cleanup_text(text):
 
 
 def normalize_studienplan(studienplan):
+
     studienplan["beschluss_datum"] = dateutil.parser.parse(
         studienplan["beschluss_datum"], GermanParserInfo()
     ).date()
@@ -283,7 +284,7 @@ def normalize_studienplan(studienplan):
     for pruefungsfach in studienplan["pruefungsfaecher"]:
         for i, modul in enumerate(pruefungsfach["module"]):
             modul = re.match(
-                r'(?P<wahl>\*)?(?P<name>.*)\s+\((?P<ects>.*) ECTS\)', modul
+                r"(?P<wahl>\*)?(?P<name>.*)\s+\((?P<ects>.*) ECTS\)", modul
             ).groupdict()
             modul["wahl"] = modul["wahl"] == "*"
             pruefungsfach["module"][i] = modul
@@ -291,11 +292,11 @@ def normalize_studienplan(studienplan):
     for semester, lvas in studienplan["semestereinteilung"].items():
         for i, lva in enumerate(lvas):
             lva = re.match(
-                r"(?P<steop_constrained>\*)?\s*(?P<ects>\d{1,2},\d)\s*"
+                r"(?P<not_steop_constrained>\*)?\s*(?P<ects>\d{1,2},\d)\s*"
                 + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
                 lva,
             ).groupdict()
-            lva["steop_constrained"] = lva["steop_constrained"] == "*"
+            lva["not_steop_constrained"] = lva["not_steop_constrained"] != "*"
             lvas[i] = lva
 
     for modul in studienplan["modulbeschreibungen"]:
@@ -313,13 +314,53 @@ def normalize_studienplan(studienplan):
             ).groupdict()
             modul["lvas"][i] = lva
 
+
+def condense_studienplan(studienplan):
+    def _get_modulbeschreibung(modul_name):
+        for i, modulbeschreibung in enumerate(studienplan["modulbeschreibungen"]):
+            if modulbeschreibung["name"] == modul_name:
+                del studienplan["modulbeschreibungen"][i]
+                return modulbeschreibung
+
+    def _get_semester_steop(lva):
+        for semester, lvas in studienplan["semestereinteilung"].items():
+            for i, l in enumerate(lvas):
+                if (
+                    lva["name"] == l["name"]
+                    and lva["lva_typ"] == l["lva_typ"]
+                    and lva["ects"] == l["ects"]
+                ):
+                    del lvas[i]
+                    return semester, l["not_steop_constrained"]
+        return None, False
+
+    for pruefungsfach in studienplan["pruefungsfaecher"]:
+        for modul in pruefungsfach["module"]:
+            modulbeschreibung = _get_modulbeschreibung(modul["name"])
+            assert modulbeschreibung["regelarbeitsaufwand"]["ects"] == modul["ects"]
+            # modul["lernergebnisse"] = modulbeschreibung["lernergebnisse"]
+            modul["lvas"] = modulbeschreibung["lvas"]
+            for lva in modul["lvas"]:
+                lva["semester"], lva["not_steop_constrained"] = _get_semester_steop(lva)
+
+    # Delete redundant information and make sure that it has been used.
+
+    assert studienplan["modulbeschreibungen"] == []
+    del studienplan["modulbeschreibungen"]
+
+    for semestereinteilung in studienplan["semestereinteilung"].values():
+        assert semestereinteilung == []
+    del studienplan["semestereinteilung"]
+
     import pdb
     pdb.set_trace()
 
 
 def main():
     text = cleanup_text(read_pdf("BachelorSoftwareandInformationEngineering.pdf"))
-    normalize_studienplan(parse_studienplan(text))
+    studienplan = parse_studienplan(text)
+    normalize_studienplan(studienplan)
+    condense_studienplan(studienplan)
 
 
 if __name__ == "__main__":
