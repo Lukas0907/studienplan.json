@@ -162,9 +162,9 @@ def parse_studienplan(text):
                     modul["lernergebnisse"].append(line)
                     line = next_line(lines)
             elif state == State.MODUL_LVAS:
-                if re.match(r"^( \d|\d\d),\d", line):
+                if re.match(r"^((?:\*| )\d|\d\d),\d", line):
                     # Line is not stripped so we can distinguish between continuing
-                    # LVA name,  new LVA name as well as new modules.
+                    # LVA name, new LVA name as well as new modules.
                     modul["lvas"].append(line.strip())
                     line = next_line(lines, strip=False)
                 elif line.startswith("            "):
@@ -174,11 +174,23 @@ def parse_studienplan(text):
                 else:
                     state = State.MODUL_NAME
             elif state == State.MODUL_LVA_DESC:
-                # The Modul "Freie Wahlfächer und Transferable Skills" doesn't have a
-                # list of LVAs. Just skip the description.
                 if "zentralen Wahlfachkatalog der TU Wien" in line:
+                    # The Modul "Freie Wahlfächer und Transferable Skills" doesn't have
+                    # a list of LVAs. Just skip the description.
                     state = State.MODUL_NAME
-                line = next_line(lines)
+                    line = next_line(lines)
+                elif "aus folgender Liste zu wählen" in line:
+                    # The Modul "Life Sciences in der Medizin" has an extra text
+                    # before the list of LVAs.
+                    state = State.MODUL_LVAS
+                    line = next_line(lines, strip=False)
+                elif "die übrigen Pflichtlehrveranstaltungen" in line:
+                    # The Modul "Software Engineering und Projektmanagement" has an
+                    # extra text before the list of LVAs.
+                    state = State.MODUL_LVAS
+                    line = next_line(lines, strip=False)
+                else:
+                    line = next_line(lines)
             elif state == State.LEHRVERANSTALTUNGSTYPEN:
                 # A lot of text inbetween is skipped.
                 if line.startswith("D. Semestereinteilung der Lehrveranstaltungen"):
@@ -326,8 +338,10 @@ def normalize_studienplan(studienplan):
             "\n".join(modul["lernergebnisse"]).replace("Lernergebnisse:", "").strip()
         )
         for i, lva in enumerate(modul["lvas"]):
+            # The Modul "Software Engineering und Projektmanagement" in Medizinische
+            # Informatik has a special rule.
             lva = re.match(
-                r"(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
+                r"(?:\*)?(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
                 + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
                 lva,
             ).groupdict()
