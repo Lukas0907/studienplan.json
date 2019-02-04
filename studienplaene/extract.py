@@ -122,6 +122,16 @@ def parse_studienplan(text):
                 if line.endswith("ECTS)"):
                     pruefungsfach["module"].append(line)
                     line = next_line(lines)
+                elif line in [
+                    "*Vertiefung Bakkalaureat Technische Informatik",
+                    "*Verbreiterung Bakkalaureat Technische Informatik",
+                ]:
+                    # These two modules do not have fixed ECTS.
+                    pruefungsfach["module"].append(line)
+                    line = next_line(lines)
+                elif line in ["Vertiefung:", "Verbreiterung:"]:
+                    # Skip Vertiefung/Verbreiterung in Bachelor Technische Informatik.
+                    line = next_line(lines)
                 else:
                     state = State.PRUEFUNGSFACH_NAME
             elif state == State.KURZBESCHREIBUNG_MODULE:
@@ -148,13 +158,21 @@ def parse_studienplan(text):
                     state = State.MODUL_REGELARBEITSAUFWAND
                 line = next_line(lines)
             elif state == State.MODUL_REGELARBEITSAUFWAND:
-                modul["regelarbeitsaufwand"] = line.replace("Regelarbeitsaufwand: ", "")
+                if line.startswith("Regelarbeitsaufwand:"):
+                    modul["regelarbeitsaufwand"] = line.replace(
+                        "Regelarbeitsaufwand: ", ""
+                    )
+                    line = next_line(lines)
                 state = State.MODUL_LERNERGEBNISSE
-                line = next_line(lines)
             elif state == State.MODUL_LERNERGEBNISSE:
                 if line.startswith("Lehrveranstaltungen des Moduls:"):
                     state = State.MODUL_LVAS
                     line = next_line(lines, strip=False)
+                elif line.endswith("Individuell nach gewählten Modulen/LVAs."):
+                    # Bachelor Technische Informatik has two Module that do not have a
+                    # list of LVAs.
+                    state = State.MODUL_NAME
+                    line = next_line(lines)
                 else:
                     modul["lernergebnisse"].append(line)
                     line = next_line(lines)
@@ -291,7 +309,6 @@ def cleanup_text(text):
 
 
 def normalize_studienplan(studienplan):
-
     studienplan["beschluss_datum"] = dateutil.parser.parse(
         studienplan["beschluss_datum"], GermanParserInfo()
     ).date()
@@ -303,8 +320,13 @@ def normalize_studienplan(studienplan):
     for pruefungsfach in studienplan["pruefungsfaecher"]:
         for i, modul in enumerate(pruefungsfach["module"]):
             modul = re.match(
-                r"(?P<wahl>\*)?(?P<name>.*)\s+\((?P<ects>.*) ECTS\)", modul
+                r"(?P<wahl>\*)?"
+                + r"(?:(?P<name>.*)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.*))",
+                modul,
             ).groupdict()
+            name_no_ects = modul.pop("name_no_ects")
+            if name_no_ects:
+                modul["name"] = name_no_ects
             modul["wahl"] = modul["wahl"] == "*"
             pruefungsfach["module"][i] = modul
 
@@ -319,9 +341,12 @@ def normalize_studienplan(studienplan):
             lvas[i] = lva
 
     for modul in studienplan["modulbeschreibungen"]:
-        modul["regelarbeitsaufwand"] = {
-            "ects": modul["regelarbeitsaufwand"].replace(" ECTS", "")
-        }
+        if modul["regelarbeitsaufwand"]:
+            modul["regelarbeitsaufwand"] = {
+                "ects": modul["regelarbeitsaufwand"].replace(" ECTS", "")
+            }
+        else:
+            modul["regelarbeitsaufwand"] = {"ects": None}
         modul["lernergebnisse"] = (
             "\n".join(modul["lernergebnisse"]).replace("Lernergebnisse:", "").strip()
         )
@@ -333,6 +358,8 @@ def normalize_studienplan(studienplan):
                 + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
                 lva,
             ).groupdict()
+            # Normalize spaces in name.
+            lva["name"] = re.sub("\s+", " ", lva["name"])
             modul["lvas"][i] = lva
 
 
