@@ -118,7 +118,7 @@ def parse_studienplan(text):
                     state = State.LEHRVERANSTALTUNGSTYPEN
                 else:
                     modul = {
-                        "name": line,
+                        "name": line.strip(),
                         "lvas": [],
                         "regelarbeitsaufwand": {"ects": None},
                         "lernergebnisse": [],
@@ -158,11 +158,11 @@ def parse_studienplan(text):
             elif state == State.MODUL_LVAS:
                 # Line is not stripped so we can distinguish between continuing
                 # LVA name, new LVA name as well as new modules.
-                if re.match(r"^((?:\*| )\d|\d\d),\d", line):
+                if re.match(r"^((?:\*|\s)\s*\d|\d\d),\d", line):
                     # The Modul "Software Engineering und Projektmanagement" in
                     # Medizinische Informatik has a special rule.
                     lva = re.match(
-                        r"(?:\*)?(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
+                        r"(?:\*\s*)?(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
                         + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
                         line.strip(),
                     ).groupdict()
@@ -251,7 +251,8 @@ def parse_studienplan(text):
                     line = next_line(lines)
             elif state == State.PRUEFUNGSFACH_MODUL:
                 # The fixing of quotes ist not 100% perfect so we don't rely on the fact
-                # the name of the Modul is within quotes. We parse the name with quotes.
+                # that the name of the Modul is within quotes. We parse the name with
+                # quotes.
                 modul = re.match(
                     r'(?P<wahl>\*)?Modul '
                     + r'(?:(?P<name>.+)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.+))',
