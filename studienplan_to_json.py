@@ -382,7 +382,7 @@ def condense_studienplan(studienplan):
         for modul in pruefungsfach["module"]:
             modulbeschreibung = _get_modulbeschreibung(modul["name"])
             assert modulbeschreibung["regelarbeitsaufwand"]["ects"] == modul["ects"]
-            # modul["lernergebnisse"] = modulbeschreibung["lernergebnisse"]
+            modul["lernergebnisse"] = modulbeschreibung["lernergebnisse"]
             modul["lvas"] = modulbeschreibung["lvas"]
             for lva in modul["lvas"]:
                 lva["semester"], lva["not_steop_constrained"] = _get_semester_steop(lva)
