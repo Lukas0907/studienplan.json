@@ -1,0 +1,696 @@
+[
+    {
+        "module": [
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Datenbanksysteme",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "WIN/DBS \u2013 Datenbanksysteme",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Semistrukturierte Daten",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Web Engineering",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "WIN/EWA \u2013 Entwicklung von Web-Anwendungen",
+                "wahl": false
+            },
+            {
+                "ects": "8,0",
+                "lvas": [
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VU",
+                        "name": "Enterprise Information Systems",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "1,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "ERP Systeme",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "IT Strategie",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "WIN/ISM \u2013 Information System Management",
+                "wahl": false
+            },
+            {
+                "ects": "10,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Formale Modellierung",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VU",
+                        "name": "Gesch\u00e4ftsprozessmodellierung",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,6"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Objektorientierte Modellierung",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "WIN/MOD \u2013 Modellierung",
+                "wahl": false
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Daten- und Informatikrecht",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Introduction to Security",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Privates Wirtschaftsrecht",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Vertrags- und Haftungsrecht",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "WIN/RSI \u2013 Recht und Sicherheit",
+                "wahl": false
+            }
+        ],
+        "name": "WIN \u2013 Wirtschaftsinformatik"
+    },
+    {
+        "module": [
+            {
+                "ects": "8,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Grundlagen der Betriebs- und Unternehmensf\u00fchrung",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Kosten- und Leistungsrechnung",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VU",
+                        "name": "Rechnungswesen",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "1,5"
+                    }
+                ],
+                "name": "WIW/GBW \u2013 Grundlagen der Betriebswirtschaft",
+                "wahl": false
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Grundlagen der Makro\u00f6konomie",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Grundlagen der Mikro\u00f6konomie",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Grundlagen der Mikro\u00f6konomie",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "WIW/GOE \u2013 Grundlagen der \u00d6konomie",
+                "wahl": false
+            },
+            {
+                "ects": "12,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Betriebswirtschaftliche Optimierung",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Grundlagen der Organisation",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Innovationsmanagement und Marketing",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Investition und Finanzierung",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "WIW/MGT \u2013 Managementwissenschaften",
+                "wahl": false
+            }
+        ],
+        "name": "WIW \u2013 Wirtschaftswissenschaften"
+    },
+    {
+        "module": [
+            {
+                "ects": "8,0",
+                "lvas": [
+                    {
+                        "ects": "8,0",
+                        "lva_typ": "VU",
+                        "name": "Algorithmen und Datenstrukturen",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "5,5"
+                    }
+                ],
+                "name": "INT/ADA \u2013 Algorithmen und Datenstrukturen",
+                "wahl": false
+            },
+            {
+                "ects": "6,5",
+                "lvas": [
+                    {
+                        "ects": "5,5",
+                        "lva_typ": "VU",
+                        "name": "Denkweisen der Informatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "1,0",
+                        "lva_typ": "VU",
+                        "name": "Orientierung Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "1,0"
+                    }
+                ],
+                "name": "INT/DDI \u2013 Denkweisen der Informatik",
+                "wahl": false
+            },
+            {
+                "ects": "9,5",
+                "lvas": [
+                    {
+                        "ects": "5,5",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die Programmierung 1",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die Programmierung 2",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "3,0"
+                    }
+                ],
+                "name": "INT/PRO \u2013 Einf\u00fchrung in die Programmierung",
+                "wahl": false
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Software Engineering und Projektmanagement",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "PR",
+                        "name": "Software Engineering und Projektmanagement",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "INT/SEP \u2013 Software Engineering und Projektmanagement",
+                "wahl": false
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Technische Grundlagen der Informatik f\u00fcr Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Verteilte Systeme",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Verteilte Systeme",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "INT/SEN \u2013 Systems Engineering",
+                "wahl": false
+            }
+        ],
+        "name": "INT \u2013 Informationstechnologie"
+    },
+    {
+        "module": [
+            {
+                "ects": "18,0",
+                "lvas": [
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VO",
+                        "name": "Algebra und Diskrete Mathematik f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "5,0",
+                        "lva_typ": "UE",
+                        "name": "Algebra und Diskrete Mathematik f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VO",
+                        "name": "Analysis f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "UE",
+                        "name": "Analysis f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in Theoretische Informatik und Logik",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "STW/MAT \u2013 Mathematik und Theoretische Informatik",
+                "wahl": false
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Datenanalyse",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Statistik und Wahrscheinlichkeitstheorie",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Statistik und Wahrscheinlichkeitstheorie",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "STW/STA \u2013 Statistik und Wahrscheinlichkeitstheorie",
+                "wahl": false
+            }
+        ],
+        "name": "STW \u2013 Strukturwissenschaften"
+    },
+    {
+        "module": [
+            {
+                "ects": "max. 12,0",
+                "lvas": [
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VO",
+                        "name": "Betriebssysteme",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "UE",
+                        "name": "Betriebssysteme",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Datenbanksysteme Vertiefung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Grundlagen des Information Retrieval",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Informationsdesign und Visualisierung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Interface and Interaction Design",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Parallel Computing Einf\u00fchrung paralleles Rechnen",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Software-Qualit\u00e4tssicherung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "\u00dcbersetzerbau",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Usability Engineering",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "SPF/INT \u2013 Schwerpunkt Informationstechnologie",
+                "wahl": true
+            },
+            {
+                "ects": "max. 12,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Change Management",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "E-Government und Informationssysteme des \u00f6ffentlichen Sektors",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "SE",
+                        "name": "E-Government und Informationssysteme des \u00f6ffentlichen Sektors",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Internet Security",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Security for Systems Engineering",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Socially Embedded Computing f\u00fcr Wirtschaftsinformatik",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "SPF/WIN \u2013 Schwerpunkt Wirtschaftsinformatik",
+                "wahl": true
+            },
+            {
+                "ects": "max. 12,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "PR",
+                        "name": "Budgetanalyse und -planung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "PR",
+                        "name": "E-Valuation - Implementierung \u00f6konomischer Bewertungsmethoden",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Finanzwissenschaft und Infrastruktur\u00f6konomie",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "3,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "SE",
+                        "name": "Makro\u00f6konomie",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "\u00d6konomische Bewertungsmethoden",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Political Economy of Europe",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "SPF/WIW \u2013 Schwerpunkt Wirtschaftswissenschaften",
+                "wahl": true
+            }
+        ],
+        "name": "SPF \u2013 Schwerpunktfach"
+    },
+    {
+        "module": [
+            {
+                "ects": "18,0",
+                "lvas": [],
+                "name": "FWT \u2013 Freie Wahlf\u00e4cher und Transferable Skills",
+                "wahl": false
+            }
+        ],
+        "name": "FWT \u2013 Freie Wahlf\u00e4cher und Transferable Skills"
+    },
+    {
+        "module": [
+            {
+                "ects": "13,0",
+                "lvas": [
+                    {
+                        "ects": "10,0",
+                        "lva_typ": "PR",
+                        "name": "Bachelorarbeit f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "5,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "SE",
+                        "name": "Wissenschaftliches Arbeiten",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "BAC \u2013 Bachelorarbeit",
+                "wahl": false
+            }
+        ],
+        "name": "BAC \u2013 Bachelorarbeit"
+    }
+]
