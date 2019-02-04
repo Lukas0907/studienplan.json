@@ -322,6 +322,8 @@ def fix_quotes(text):
             i_quote = line.index("”")
             line = line.replace("”", " ", 1)
             assert prev_line is not None
+            if len(prev_line) <= i_quote:
+                i_quote = len(prev_line) - 1
             if prev_line[i_quote] == " ":
                 i_word = i_quote + 1
             else:
