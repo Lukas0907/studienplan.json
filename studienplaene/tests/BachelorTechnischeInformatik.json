@@ -1,0 +1,746 @@
+[
+    {
+        "module": [
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Grundlagen digitaler Systeme",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Formale Modellierung",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Grundlagen Digitaler Systeme",
+                "wahl": false
+            },
+            {
+                "ects": "6,5",
+                "lvas": [
+                    {
+                        "ects": "5,5",
+                        "lva_typ": "VU",
+                        "name": "Denkweisen der Informatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "1,0",
+                        "lva_typ": "VU",
+                        "name": "Orientierung Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "1,0"
+                    }
+                ],
+                "name": "Denkweisen der Informatik",
+                "wahl": false
+            },
+            {
+                "ects": "8,0",
+                "lvas": [
+                    {
+                        "ects": "8,0",
+                        "lva_typ": "VU",
+                        "name": "Algorithmen und Datenstrukturen",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "5,5"
+                    }
+                ],
+                "name": "Algorithmen und Datenstrukturen",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Theoretische Informatik und Logik",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Theoretische Informatik und Logik",
+                "wahl": false
+            }
+        ],
+        "name": "Grundlagen der Informatik"
+    },
+    {
+        "module": [
+            {
+                "ects": "7,5",
+                "lvas": [
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VU",
+                        "name": "Elektrotechnische Grundlagen",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "3,5",
+                        "lva_typ": "LU",
+                        "name": "Elektrotechnische Grundlagen",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "3,5"
+                    }
+                ],
+                "name": "Elektrotechnische Grundlagen",
+                "wahl": false
+            },
+            {
+                "ects": "15,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Digital Design",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "3,0"
+                    },
+                    {
+                        "ects": "1,5",
+                        "lva_typ": "VO",
+                        "name": "Hardware Modeling",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "1,5"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Rechnerstrukturen",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "3,0"
+                    },
+                    {
+                        "ects": "7,5",
+                        "lva_typ": "LU",
+                        "name": "Digital Design and Computer Architecture",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "7,5"
+                    }
+                ],
+                "name": "Digital Design",
+                "wahl": false
+            }
+        ],
+        "name": "Hardware"
+    },
+    {
+        "module": [
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VO",
+                        "name": "Algebra und Diskrete Mathematik f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "5,0",
+                        "lva_typ": "UE",
+                        "name": "Algebra und Diskrete Mathematik f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Algebra und Diskrete Mathematik",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VO",
+                        "name": "Analysis f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "UE",
+                        "name": "Analysis f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Analysis",
+                "wahl": false
+            },
+            {
+                "ects": "7,5",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Analysis 2 f\u00fcr Informatik",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "3,0"
+                    },
+                    {
+                        "ects": "4,5",
+                        "lva_typ": "UE",
+                        "name": "Analysis 2 f\u00fcr Informatik",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Analysis 2",
+                "wahl": false
+            },
+            {
+                "ects": "7,5",
+                "lvas": [
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VO",
+                        "name": "Wahrscheinlichkeitstheorie und Stochastische Prozesse f\u00fcr Informatik",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "3,5",
+                        "lva_typ": "UE",
+                        "name": "Wahrscheinlichkeitstheorie und Stochastische Prozesse f\u00fcr Informatik",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Wahrscheinlichkeitstheorie und Stochastische Prozesse",
+                "wahl": false
+            }
+        ],
+        "name": "Mathematik"
+    },
+    {
+        "module": [
+            {
+                "ects": "9,5",
+                "lvas": [
+                    {
+                        "ects": "5,5",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die Programmierung 1",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die Programmierung 2",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "3,0"
+                    }
+                ],
+                "name": "Einf\u00fchrung in die Programmierung",
+                "wahl": false
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VO",
+                        "name": "Betriebssysteme",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "UE",
+                        "name": "Betriebssysteme",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Computer Networks",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Betriebssysteme und Computernetzwerke",
+                "wahl": false
+            },
+            {
+                "ects": "7,0",
+                "lvas": [
+                    {
+                        "ects": "7,0",
+                        "lva_typ": "VU",
+                        "name": "Microcontroller",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "7,0"
+                    }
+                ],
+                "name": "Microcontroller",
+                "wahl": false
+            }
+        ],
+        "name": "Programmierung"
+    },
+    {
+        "module": [
+            {
+                "ects": "8,5",
+                "lvas": [
+                    {
+                        "ects": "4,5",
+                        "lva_typ": "VU",
+                        "name": "Signale und Systeme 1",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "3,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VU",
+                        "name": "Signale und Systeme 2",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "3,0"
+                    }
+                ],
+                "name": "Signale und Systeme",
+                "wahl": false
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Modellbildung",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,5",
+                        "lva_typ": "VU",
+                        "name": "Automatisierung",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "3,0"
+                    },
+                    {
+                        "ects": "1,5",
+                        "lva_typ": "LU",
+                        "name": "Regelungstechnik",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "1,5"
+                    }
+                ],
+                "name": "Modellbildung und Regelungstechnik",
+                "wahl": false
+            }
+        ],
+        "name": "Signale und Systeme"
+    },
+    {
+        "module": [
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Programm- und Systemverifikation",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "4,5"
+                    }
+                ],
+                "name": "Programm- und Systemverifikation",
+                "wahl": false
+            },
+            {
+                "ects": "5,0",
+                "lvas": [
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VO",
+                        "name": "Echtzeitsysteme",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Dependable Systems",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Zuverl\u00e4ssige Echtzeitsysteme",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VO",
+                        "name": "Dezentrale Automation",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "LU",
+                        "name": "Dezentrale Automation",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Dezentrale Automation",
+                "wahl": false
+            }
+        ],
+        "name": "Zuverl\u00e4ssige verteilte Echtzeitsysteme"
+    },
+    {
+        "module": [
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Abstrakte Maschinen",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Abstrakte Maschinen",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Abstrakte Maschinen",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Argumentieren und Beweisen",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Argumentieren und Beweisen",
+                "wahl": true
+            },
+            {
+                "ects": "4,5",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Computernumerik",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "1,5",
+                        "lva_typ": "UE",
+                        "name": "Computernumerik",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "1,0"
+                    }
+                ],
+                "name": "Computernumerik",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "PR",
+                        "name": "Praktikum Technische Informatik",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "1,0"
+                    }
+                ],
+                "name": "Praktikum Technische Informatik",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Parallel Computing",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Einf\u00fchrung in paralleles Rechnen (Parallel Computing)",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "\u00dcbersetzerbau",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "\u00dcbersetzerbau",
+                "wahl": true
+            },
+            {
+                "ects": null,
+                "lvas": [],
+                "name": "Vertiefung Bakkalaureat Technische Informatik",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Datenbanksysteme",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Datenbanksysteme",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Einf\u00fchrung in die Mustererkennung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Einf\u00fchrung in die Mustererkennung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Einf\u00fchrung in die Mustererkennung",
+                "wahl": true
+            },
+            {
+                "ects": "8,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die K\u00fcnstliche Intelligenz",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "5,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in wissensbasierte Systeme",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "3,0"
+                    }
+                ],
+                "name": "Grundlagen intelligenter Systeme",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Objektorientierte Programmiertechniken",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Funktionale Programmierung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Programmierparadigmen",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Verteilte Systeme",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Verteilte Systeme",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Verteilte Systeme",
+                "wahl": true
+            },
+            {
+                "ects": "8,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Grundlagen der Unternehmensf\u00fchrung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Kosten- und Leistungsrechnung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VU",
+                        "name": "Rechnungswesen",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "1,5"
+                    }
+                ],
+                "name": "Grundlagen der Betriebswirtschaft",
+                "wahl": true
+            },
+            {
+                "ects": null,
+                "lvas": [],
+                "name": "Verbreiterung Bakkalaureat Technische Informatik",
+                "wahl": true
+            }
+        ],
+        "name": "Vertiefung/Verbreiterung"
+    },
+    {
+        "module": [
+            {
+                "ects": "18,0",
+                "lvas": [],
+                "name": "Freie Wahlf\u00e4cher und Transferable Skills",
+                "wahl": false
+            }
+        ],
+        "name": "Freie Wahlf\u00e4cher und Transferable Skills"
+    },
+    {
+        "module": [
+            {
+                "ects": "13,0",
+                "lvas": [
+                    {
+                        "ects": "10,0",
+                        "lva_typ": "PR",
+                        "name": "Bachelorarbeit f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "5,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "SE",
+                        "name": "Wissenschaftliches Arbeiten",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Bachelorarbeit",
+                "wahl": false
+            }
+        ],
+        "name": "Bachelorarbeit"
+    }
+]

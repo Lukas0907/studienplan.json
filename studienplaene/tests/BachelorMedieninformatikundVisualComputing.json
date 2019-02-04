@@ -1,0 +1,688 @@
+[
+    {
+        "module": [
+            {
+                "ects": "6,5",
+                "lvas": [
+                    {
+                        "ects": "5,5",
+                        "lva_typ": "VU",
+                        "name": "Denkweisen der Informatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "1,0",
+                        "lva_typ": "VU",
+                        "name": "Orientierung Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "1,0"
+                    }
+                ],
+                "name": "Denkweisen der Informatik",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Interface and Interaction Design",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "PR",
+                        "name": "Interface and Interaction Design",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Interface & Interaction Design",
+                "wahl": false
+            },
+            {
+                "ects": "10,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Gesellschaftswissenschaftliche Grundlagen der Informatik",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VU",
+                        "name": "Socially Embedded Computing",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "3,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Daten- und Informatikrecht",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Kontexte der Systementwicklung",
+                "wahl": false
+            },
+            {
+                "ects": "7,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Multimedia",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "UE",
+                        "name": "Multimedia",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Multimedia",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Usability Engineering",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Pilots in Mobile Interaction: User-centered Interaction Research and Evaluation",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Usability Engineering and Mobile Interaction",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Audio Production",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Video Production",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Audio Production and Video Production",
+                "wahl": true
+            },
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Elektroakustische Musik 1",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Elektroakustische Musik 2",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Musikproduktion",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Computermusik",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Multimedia Produktion 1: Materialien und Tools",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Multimedia-Produktion",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Vernetztes Lernen",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Vernetztes Lernen",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Vernetztes Lernen",
+                "wahl": true
+            }
+        ],
+        "name": "HCI und Medieninformatik"
+    },
+    {
+        "module": [
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VO",
+                        "name": "Algebra und Diskrete Mathematik f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "5,0",
+                        "lva_typ": "UE",
+                        "name": "Algebra und Diskrete Mathematik f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Algebra und Diskrete Mathematik",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "2,0",
+                        "lva_typ": "VO",
+                        "name": "Analysis f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "UE",
+                        "name": "Analysis f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Analysis",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Statistik und Wahrscheinlichkeitstheorie",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Statistik und Wahrscheinlichkeitstheorie",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Statistik und Wahrscheinlichkeitstheorie",
+                "wahl": false
+            }
+        ],
+        "name": "Mathematik und Statistik"
+    },
+    {
+        "module": [
+            {
+                "ects": "8,0",
+                "lvas": [
+                    {
+                        "ects": "8,0",
+                        "lva_typ": "VU",
+                        "name": "Algorithmen und Datenstrukturen",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "5,5"
+                    }
+                ],
+                "name": "Algorithmen und Datenstrukturen",
+                "wahl": false
+            },
+            {
+                "ects": "12,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Objektorientierte Modellierung",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Formale Modellierung",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die Theoretische Informatik und Logik",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Datenmodellierung",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Modellierung",
+                "wahl": false
+            },
+            {
+                "ects": "9,5",
+                "lvas": [
+                    {
+                        "ects": "5,5",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die Programmierung 1",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    },
+                    {
+                        "ects": "4,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in die Programmierung 2",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "3,0"
+                    }
+                ],
+                "name": "Einf\u00fchrung in die Programmierung",
+                "wahl": false
+            },
+            {
+                "ects": "12,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Objektorientierte Programmiertechniken",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Software Engineering und Projektmanagement",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "PR",
+                        "name": "Software Engineering und Projektmanagement",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Software Engineering und Projektmanagement",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Semistrukturierte Daten",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Web Engineering",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Entwicklung von Web-Anwendungen",
+                "wahl": true
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Software-Qualit\u00e4tssicherung",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Softwarequalit\u00e4tssicherung",
+                "wahl": true
+            }
+        ],
+        "name": "Software Entwicklung und Datenmodellierung"
+    },
+    {
+        "module": [
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Technische Grundlagen der Informatik",
+                        "not_steop_constrained": true,
+                        "semester": "1. Semester (WS)",
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Technische Grundlagen der Informatik",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Verteilte Systeme",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Verteilte Systeme",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Verteilte Systeme",
+                "wahl": false
+            },
+            {
+                "ects": "mindestens 6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Introduction to Security",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Internet Security",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Introduction to Modern Cryptography",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Privacy Enhancing Technologies",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Security for Systems Engineering",
+                        "not_steop_constrained": false,
+                        "semester": null,
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Security",
+                "wahl": true
+            }
+        ],
+        "name": "Technische Informatik"
+    },
+    {
+        "module": [
+            {
+                "ects": "9,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Computergraphik",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "UE",
+                        "name": "Computergraphik",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "4,0"
+                    }
+                ],
+                "name": "Computergraphik",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VO",
+                        "name": "Einf\u00fchrung in die Mustererkennung",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Einf\u00fchrung in die Mustererkennung",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Einf\u00fchrung in die Mustererkennung",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "6,0",
+                        "lva_typ": "VU",
+                        "name": "Einf\u00fchrung in Visual Computing",
+                        "not_steop_constrained": true,
+                        "semester": "2. Semester (SS)",
+                        "sst": "5,0"
+                    }
+                ],
+                "name": "Einf\u00fchrung in Visual Computing",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Einf\u00fchrung in die Computergraphik",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "UE",
+                        "name": "Einf\u00fchrung in die digitale Bildverarbeitung",
+                        "not_steop_constrained": false,
+                        "semester": "3. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "\u00dcbungen zu Visual Computing",
+                "wahl": false
+            },
+            {
+                "ects": "6,0",
+                "lvas": [
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Informationsdesign und Visualisierung",
+                        "not_steop_constrained": false,
+                        "semester": "4. Semester (SS)",
+                        "sst": "2,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "VU",
+                        "name": "Visualisierung 1",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Visualisierung",
+                "wahl": false
+            }
+        ],
+        "name": "Visual Computing"
+    },
+    {
+        "module": [
+            {
+                "ects": "18,0",
+                "lvas": [],
+                "name": "Freie Wahlf\u00e4cher und Transferable Skills",
+                "wahl": false
+            }
+        ],
+        "name": "Freie Wahlf\u00e4cher und Transferable Skills"
+    },
+    {
+        "module": [
+            {
+                "ects": "13,0",
+                "lvas": [
+                    {
+                        "ects": "10,0",
+                        "lva_typ": "PR",
+                        "name": "Bachelorarbeit f\u00fcr Informatik und Wirtschaftsinformatik",
+                        "not_steop_constrained": false,
+                        "semester": "6. Semester (SS)",
+                        "sst": "5,0"
+                    },
+                    {
+                        "ects": "3,0",
+                        "lva_typ": "SE",
+                        "name": "Wissenschaftliches Arbeiten",
+                        "not_steop_constrained": false,
+                        "semester": "5. Semester (WS)",
+                        "sst": "2,0"
+                    }
+                ],
+                "name": "Bachelorarbeit",
+                "wahl": false
+            }
+        ],
+        "name": "Bachelorarbeit"
+    }
+]
