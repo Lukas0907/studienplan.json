@@ -84,19 +84,21 @@ def parse_studienplan(text):
                 state = State.STUDIUM_KENNZAHL
                 line = next_line(lines)
             elif state == State.STUDIUM_KENNZAHL:
-                studienplan["studienkennzahl"] = line
+                studienplan["studienkennzahl"] = line.replace(" ", "")
                 state = State.BESCHLUSS_DATUM
                 line = next_line(lines)
             elif state == State.BESCHLUSS_DATUM:
                 if line.startswith("mit Wirksamkeit"):
-                    studienplan["beschluss_datum"] = line.replace(
-                        "mit Wirksamkeit ", ""
-                    )
+                    studienplan["beschluss_datum"] = dateutil.parser.parse(
+                        line.replace("mit Wirksamkeit ", ""), GermanParserInfo()
+                    ).date()
                     state = State.GUELTIG_DATUM
                 line = next_line(lines)
             elif state == State.GUELTIG_DATUM:
                 assert line.startswith("Gültig ab")
-                studienplan["gueltig_datum"] = line.replace("Gültig ab ", "")
+                studienplan["gueltig_datum"] = dateutil.parser.parse(
+                    line.replace("Gültig ab ", ""), GermanParserInfo()
+                ).date()
                 state = State.INHALTSVERZEICHNIS
                 line = next_line(lines)
             elif state == State.INHALTSVERZEICHNIS:
@@ -119,15 +121,21 @@ def parse_studienplan(text):
                     state = State.PRUEFUNGSFACH_MODUL
                 line = next_line(lines)
             elif state == State.PRUEFUNGSFACH_MODUL:
-                if line.endswith("ECTS)"):
-                    pruefungsfach["module"].append(line)
-                    line = next_line(lines)
-                elif line in [
+                if line.endswith("ECTS)") or line in [
+                    # These two modules do not have fixed ECTS.
                     "*Vertiefung Bakkalaureat Technische Informatik",
                     "*Verbreiterung Bakkalaureat Technische Informatik",
                 ]:
-                    # These two modules do not have fixed ECTS.
-                    pruefungsfach["module"].append(line)
+                    modul = re.match(
+                        r"(?P<wahl>\*)?"
+                        + r"(?:(?P<name>.*)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.*))",
+                        line,
+                    ).groupdict()
+                    name_no_ects = modul.pop("name_no_ects")
+                    if name_no_ects:
+                        modul["name"] = name_no_ects
+                    modul["wahl"] = modul["wahl"] == "*"
+                    pruefungsfach["module"].append(modul)
                     line = next_line(lines)
                 elif line in ["Vertiefung:", "Verbreiterung:"]:
                     # Skip Vertiefung/Verbreiterung in Bachelor Technische Informatik.
@@ -151,7 +159,7 @@ def parse_studienplan(text):
                     modul = {
                         "name": line,
                         "lvas": [],
-                        "regelarbeitsaufwand": None,
+                        "regelarbeitsaufwand": {"ects": None},
                         "lernergebnisse": [],
                     }
                     modulbeschreibungen.append(modul)
@@ -159,9 +167,9 @@ def parse_studienplan(text):
                 line = next_line(lines)
             elif state == State.MODUL_REGELARBEITSAUFWAND:
                 if line.startswith("Regelarbeitsaufwand:"):
-                    modul["regelarbeitsaufwand"] = line.replace(
+                    modul["regelarbeitsaufwand"]["ects"] = line.replace(
                         "Regelarbeitsaufwand: ", ""
-                    )
+                    ).replace(" ECTS", "")
                     line = next_line(lines)
                 state = State.MODUL_LERNERGEBNISSE
             elif state == State.MODUL_LERNERGEBNISSE:
@@ -176,15 +184,34 @@ def parse_studienplan(text):
                 else:
                     modul["lernergebnisse"].append(line)
                     line = next_line(lines)
+                    # Stay in the same state to potentially add another line to
+                    # Lernergebnisse.
+                    continue
+
+                # Lernergebnisse is fully parsed.
+                modul["lernergebnisse"] = (
+                    "\n".join(modul["lernergebnisse"]).replace(
+                        "Lernergebnisse:", ""
+                    ).strip()
+                )
             elif state == State.MODUL_LVAS:
+                # Line is not stripped so we can distinguish between continuing
+                # LVA name, new LVA name as well as new modules.
                 if re.match(r"^((?:\*| )\d|\d\d),\d", line):
-                    # Line is not stripped so we can distinguish between continuing
-                    # LVA name, new LVA name as well as new modules.
-                    modul["lvas"].append(line.strip())
+                    # The Modul "Software Engineering und Projektmanagement" in
+                    # Medizinische Informatik has a special rule.
+                    lva = re.match(
+                        r"(?:\*)?(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
+                        + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
+                        line.strip(),
+                    ).groupdict()
+                    # Normalize spaces in name.
+                    lva["name"] = re.sub("\s+", " ", lva["name"])
+                    modul["lvas"].append(lva)
                     line = next_line(lines, strip=False)
                 elif line.startswith("            ") and line.strip():
                     # LVA name goes over two lines.
-                    modul["lvas"][-1] += " " + line.strip()
+                    modul["lvas"][-1]["name"] += " " + line.strip()
                     line = next_line(lines, strip=False)
                 elif "zentralen Wahlfachkatalog der TU Wien" in line:
                     # The Modul "Freie Wahlfächer und Transferable Skills" doesn't have
@@ -220,7 +247,17 @@ def parse_studienplan(text):
                 elif line.startswith("E. Semesterempfehlung"):
                     state = State.SEMESTEREMPFEHLUNG_SCHIEFEINSTEIGEND
                 else:
-                    semester.append(line)
+                    match = re.match(
+                        r"(?P<not_steop_constrained>\*)?\s*(?P<ects>\d{1,2},\d)\s*"
+                        + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
+                        line,
+                    )
+                    if match:
+                        lva = match.groupdict()
+                        lva["not_steop_constrained"] = (
+                            lva["not_steop_constrained"] != "*"
+                        )
+                        semester.append(lva)
                     line = next_line(lines)
             elif state == State.SEMESTEREMPFEHLUNG_SCHIEFEINSTEIGEND:
                 state = state.END
@@ -308,61 +345,6 @@ def cleanup_text(text):
     return text
 
 
-def normalize_studienplan(studienplan):
-    studienplan["beschluss_datum"] = dateutil.parser.parse(
-        studienplan["beschluss_datum"], GermanParserInfo()
-    ).date()
-    studienplan["gueltig_datum"] = dateutil.parser.parse(
-        studienplan["gueltig_datum"], GermanParserInfo()
-    ).date()
-    studienplan["studienkennzahl"] = studienplan["studienkennzahl"].replace(" ", "")
-
-    for pruefungsfach in studienplan["pruefungsfaecher"]:
-        for i, modul in enumerate(pruefungsfach["module"]):
-            modul = re.match(
-                r"(?P<wahl>\*)?"
-                + r"(?:(?P<name>.*)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.*))",
-                modul,
-            ).groupdict()
-            name_no_ects = modul.pop("name_no_ects")
-            if name_no_ects:
-                modul["name"] = name_no_ects
-            modul["wahl"] = modul["wahl"] == "*"
-            pruefungsfach["module"][i] = modul
-
-    for semester, lvas in studienplan["semestereinteilung"].items():
-        for i, lva in enumerate(lvas):
-            lva = re.match(
-                r"(?P<not_steop_constrained>\*)?\s*(?P<ects>\d{1,2},\d)\s*"
-                + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
-                lva,
-            ).groupdict()
-            lva["not_steop_constrained"] = lva["not_steop_constrained"] != "*"
-            lvas[i] = lva
-
-    for modul in studienplan["modulbeschreibungen"]:
-        if modul["regelarbeitsaufwand"]:
-            modul["regelarbeitsaufwand"] = {
-                "ects": modul["regelarbeitsaufwand"].replace(" ECTS", "")
-            }
-        else:
-            modul["regelarbeitsaufwand"] = {"ects": None}
-        modul["lernergebnisse"] = (
-            "\n".join(modul["lernergebnisse"]).replace("Lernergebnisse:", "").strip()
-        )
-        for i, lva in enumerate(modul["lvas"]):
-            # The Modul "Software Engineering und Projektmanagement" in Medizinische
-            # Informatik has a special rule.
-            lva = re.match(
-                r"(?:\*)?(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
-                + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
-                lva,
-            ).groupdict()
-            # Normalize spaces in name.
-            lva["name"] = re.sub("\s+", " ", lva["name"])
-            modul["lvas"][i] = lva
-
-
 def condense_studienplan(studienplan):
     def _get_modulbeschreibung(modul_name):
         for i, modulbeschreibung in enumerate(studienplan["modulbeschreibungen"]):
@@ -404,7 +386,6 @@ def condense_studienplan(studienplan):
 def main():
     text = cleanup_text(read_pdf(sys.argv[1]))
     studienplan = parse_studienplan(text)
-    normalize_studienplan(studienplan)
     condense_studienplan(studienplan)
     with open(sys.argv[1].replace("pdf", "json"), "w") as f:
         json.dump(studienplan["pruefungsfaecher"], f, indent=4, sort_keys=True)
