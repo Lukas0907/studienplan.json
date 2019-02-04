@@ -32,6 +32,7 @@ class State(enum.Enum):
     BESCHLUSS_DATUM = 5
     GUELTIG_DATUM = 6
     INHALTSVERZEICHNIS = 7
+    PRUEFUNGSFACH_MODUL_LVA = 12
     PRUEFUNGSFAECHER = 13
     PRUEFUNGSFACH_NAME = 14
     PRUEFUNGSFACH_MODUL = 15
@@ -103,46 +104,6 @@ def parse_studienplan(text):
                 line = next_line(lines)
             elif state == State.INHALTSVERZEICHNIS:
                 # A lot of text inbetween is skipped.
-                if line.startswith("Prüfungsfächer und zugehörige Module"):
-                    state = State.PRUEFUNGSFAECHER
-                line = next_line(lines)
-            elif state == State.PRUEFUNGSFAECHER:
-                if line.endswith("mindestens 180 ECTS ergibt."):
-                    studienplan["pruefungsfaecher"] = []
-                    pruefungsfaecher = studienplan["pruefungsfaecher"]
-                    state = State.PRUEFUNGSFACH_NAME
-                line = next_line(lines)
-            elif state == State.PRUEFUNGSFACH_NAME:
-                if line == "Kurzbeschreibung der Module":
-                    state = State.KURZBESCHREIBUNG_MODULE
-                else:
-                    pruefungsfach = {"name": line, "module": []}
-                    pruefungsfaecher.append(pruefungsfach)
-                    state = State.PRUEFUNGSFACH_MODUL
-                line = next_line(lines)
-            elif state == State.PRUEFUNGSFACH_MODUL:
-                if line.endswith("ECTS)") or line in [
-                    # These two modules do not have fixed ECTS.
-                    "*Vertiefung Bakkalaureat Technische Informatik",
-                    "*Verbreiterung Bakkalaureat Technische Informatik",
-                ]:
-                    modul = re.match(
-                        r"(?P<wahl>\*)?"
-                        + r"(?:(?P<name>.*)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.*))",
-                        line,
-                    ).groupdict()
-                    name_no_ects = modul.pop("name_no_ects")
-                    if name_no_ects:
-                        modul["name"] = name_no_ects
-                    modul["wahl"] = modul["wahl"] == "*"
-                    pruefungsfach["module"].append(modul)
-                    line = next_line(lines)
-                elif line in ["Vertiefung:", "Verbreiterung:"]:
-                    # Skip Vertiefung/Verbreiterung in Bachelor Technische Informatik.
-                    line = next_line(lines)
-                else:
-                    state = State.PRUEFUNGSFACH_NAME
-            elif state == State.KURZBESCHREIBUNG_MODULE:
                 if line.startswith("A. Modulbeschreibungen"):
                     state = State.MODULBESCHREIBUNGEN
                 line = next_line(lines)
@@ -260,7 +221,59 @@ def parse_studienplan(text):
                         semester.append(lva)
                     line = next_line(lines)
             elif state == State.SEMESTEREMPFEHLUNG_SCHIEFEINSTEIGEND:
-                state = state.END
+                # A lot of text inbetween is skipped.
+                if line.startswith("G. Prüfungsfächer mit den zugeordneten Modulen"):
+                    state = State.PRUEFUNGSFAECHER
+                line = next_line(lines)
+            elif state == State.PRUEFUNGSFAECHER:
+                if line.startswith("Prüfungsfach"):
+                    studienplan["pruefungsfaecher"] = []
+                    pruefungsfaecher = studienplan["pruefungsfaecher"]
+                    state = State.PRUEFUNGSFACH_NAME
+                else:
+                    line = next_line(lines)
+            elif state == State.PRUEFUNGSFACH_NAME:
+                if line.startswith("Prüfungsfach"):
+                    pruefungsfach = {"name": line, "module": []}
+                    pruefungsfaecher.append(pruefungsfach)
+                    line = next_line(lines)
+                elif line.startswith("Modul") or line.startswith("*Modul"):
+                    pruefungsfach["name"] = re.match(
+                        r'Prüfungsfach "([^"]+)"',
+                        pruefungsfach["name"]
+                    ).group(1)
+                    state = State.PRUEFUNGSFACH_MODUL
+                elif line.startswith("H. Bachelor-Abschluss mit Honors"):
+                    state = State.END
+                else:
+                    # Continuing Prüfungsfach name
+                    pruefungsfach["name"] += " " + line
+                    line = next_line(lines)
+            elif state == State.PRUEFUNGSFACH_MODUL:
+                # The fixing of quotes ist not 100% perfect so we don't rely on the fact
+                # the name of the Modul is within quotes. We parse the name with quotes.
+                modul = re.match(
+                    r'(?P<wahl>\*)?Modul '
+                    + r'(?:(?P<name>.+)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.+))',
+                    line,
+                ).groupdict()
+                name_no_ects = modul.pop("name_no_ects")
+                if name_no_ects:
+                    modul["name"] = name_no_ects
+                # And remove the quotes here.
+                modul["name"] = modul["name"].replace('"', "")
+                modul["wahl"] = modul["wahl"] == "*"
+                pruefungsfach["module"].append(modul)
+                state = State.PRUEFUNGSFACH_MODUL_LVA
+                line = next_line(lines)
+            elif state == State.PRUEFUNGSFACH_MODUL_LVA:
+                if line.startswith("Modul") or line.startswith("*Modul"):
+                    state = State.PRUEFUNGSFACH_MODUL
+                elif line.startswith("Prüfungsfach"):
+                    state = State.PRUEFUNGSFACH_NAME
+                else:
+                    # TODO Skip list of LVAs for now.
+                    line = next_line(lines)
             elif state == State.END:
                 break
     except StopIteration:
