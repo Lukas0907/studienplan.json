@@ -407,7 +407,7 @@ def main():
     normalize_studienplan(studienplan)
     condense_studienplan(studienplan)
     with open(sys.argv[1].replace("pdf", "json"), "w") as f:
-        json.dump(studienplan["pruefungsfaecher"], f)
+        json.dump(studienplan["pruefungsfaecher"], f, indent=4, sort_keys=True)
 
 
 if __name__ == "__main__":
