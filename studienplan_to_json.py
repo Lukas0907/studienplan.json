@@ -187,7 +187,8 @@ def parse_studienplan(text):
                     state = State.MODUL_NAME
             elif state == State.LEHRVERANSTALTUNGSTYPEN:
                 # A lot of text inbetween is skipped.
-                if line.startswith("D. Semestereinteilung der Lehrveranstaltungen"):
+                if "Semestereinteilung der Lehrveranstaltungen" in line:
+                    # Can be appendix D or C.
                     state = State.SEMESTEREINTEILUNG
                     studienplan["semestereinteilung"] = {}
                     semestereinteilung = studienplan["semestereinteilung"]
@@ -206,7 +207,11 @@ def parse_studienplan(text):
                 if line.endswith("Semester (WS)") or line.endswith("Semester (SS)"):
                     state = State.SEMESTEREINTEILUNG_SEMESTER
                 elif line.startswith("E. Semesterempfehlung"):
+                    # Bachelor
                     state = State.SEMESTEREMPFEHLUNG_SCHIEFEINSTEIGEND
+                elif line.startswith("D. Prüfungsfächer mit den zugeordneten Modulen"):
+                    # Master
+                    state = State.PRUEFUNGSFAECHER
                 else:
                     match = re.match(
                         r"(?P<not_steop_constrained>\*)?\s*(?P<ects>\d{1,2},\d)\s*"
@@ -222,7 +227,8 @@ def parse_studienplan(text):
                     line = next_line(lines)
             elif state == State.SEMESTEREMPFEHLUNG_SCHIEFEINSTEIGEND:
                 # A lot of text inbetween is skipped.
-                if line.startswith("G. Prüfungsfächer mit den zugeordneten Modulen"):
+                if "Prüfungsfächer mit den zugeordneten Modulen" in line:
+                    # Can be appendix D or G, depending on Bachelor or Master.
                     state = State.PRUEFUNGSFAECHER
                 line = next_line(lines)
             elif state == State.PRUEFUNGSFAECHER:
@@ -244,6 +250,10 @@ def parse_studienplan(text):
                     ).group(1)
                     state = State.PRUEFUNGSFACH_MODUL
                 elif line.startswith("H. Bachelor-Abschluss mit Honors"):
+                    state = State.END
+                elif pruefungsfach["name"] == 'Prüfungsfach "Diplomarbeit"':
+                    # Special case for Diplomarbeit which doesn't have a Modul.
+                    pruefungsfach["name"] = "Diplomarbeit"
                     state = State.END
                 else:
                     # Continuing Prüfungsfach name
@@ -383,6 +393,12 @@ def condense_studienplan(studienplan):
     for pruefungsfach in studienplan["pruefungsfaecher"]:
         for modul in pruefungsfach["module"]:
             modulbeschreibung = _get_modulbeschreibung(modul["name"])
+            if not modulbeschreibung and modul["name"].startswith("Projekt aus "):
+                # The Modul "Projekt aus Software Engineering & Projektmanagement" is
+                # part of every Prüfungsfach. However, it's deleted from the
+                # Modulbeschreibung after beeing assigned to the first Prüfungsfach.
+                # That's OK.
+                continue
             assert modulbeschreibung["regelarbeitsaufwand"]["ects"] == modul["ects"]
             modul["lernergebnisse"] = modulbeschreibung["lernergebnisse"]
             modul["lvas"] = modulbeschreibung["lvas"]
