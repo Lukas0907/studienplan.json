@@ -1,4 +1,1 @@
-parsel
-cachecontrol[filecache]
-requests
 python-dateutil
