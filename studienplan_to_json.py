@@ -151,9 +151,9 @@ def parse_studienplan(text):
 
                 # Lernergebnisse is fully parsed.
                 modul["lernergebnisse"] = (
-                    "\n".join(modul["lernergebnisse"]).replace(
-                        "Lernergebnisse:", ""
-                    ).strip()
+                    "\n".join(modul["lernergebnisse"])
+                    .replace("Lernergebnisse:", "")
+                    .strip()
                 )
             elif state == State.MODUL_LVAS:
                 # Line is not stripped so we can distinguish between continuing
@@ -245,8 +245,7 @@ def parse_studienplan(text):
                     line = next_line(lines)
                 elif line.startswith("Modul") or line.startswith("*Modul"):
                     pruefungsfach["name"] = re.match(
-                        r'Prüfungsfach "([^"]+)"',
-                        pruefungsfach["name"]
+                        r'Prüfungsfach "([^"]+)"', pruefungsfach["name"]
                     ).group(1)
                     state = State.PRUEFUNGSFACH_MODUL
                 elif line.startswith("H. Bachelor-Abschluss mit Honors"):
@@ -264,8 +263,8 @@ def parse_studienplan(text):
                 # that the name of the Modul is within quotes. We parse the name with
                 # quotes.
                 modul = re.match(
-                    r'(?P<wahl>\*)?Modul '
-                    + r'(?:(?P<name>.+)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.+))',
+                    r"(?P<wahl>\*)?Modul "
+                    + r"(?:(?P<name>.+)\s+\((?P<ects>.*) ECTS\)|(?P<name_no_ects>.+))",
                     line,
                 ).groupdict()
                 name_no_ects = modul.pop("name_no_ects")
