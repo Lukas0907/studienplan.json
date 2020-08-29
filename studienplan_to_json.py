@@ -158,11 +158,11 @@ def parse_studienplan(text):
             elif state == State.MODUL_LVAS:
                 # Line is not stripped so we can distinguish between continuing
                 # LVA name, new LVA name as well as new modules.
-                if re.match(r"^((?:\*|\s)\s*\d|\d\d),\d", line):
+                if re.match(r"^((?:\*|\s)\s*\d|\d\d)[,.]\d", line):
                     # The Modul "Software Engineering und Projektmanagement" in
                     # Medizinische Informatik has a special rule.
                     lva = re.match(
-                        r"(?:\*\s*)?(?P<ects>\d{1,2},\d)/(?P<sst>\d{1,2},\d)\s*"
+                        r"(?:\*\s*)?(?P<ects>\d{1,2}[,.]\d)/(?P<sst>\d{1,2}[,.]\d)\s*"
                         + r"(?P<lva_typ>[A-Z]+)\s+(?P<name>.*)",
                         line.strip(),
                     ).groupdict()
