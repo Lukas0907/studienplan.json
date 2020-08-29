@@ -419,6 +419,15 @@ def condense_studienplan(studienplan):
         assert semestereinteilung == []
     del studienplan["semestereinteilung"]
 
+    # Sort.
+    studienplan["pruefungsfaecher"] = sorted(
+        studienplan["pruefungsfaecher"], key=lambda p: p["name"]
+    )
+    for pruefungsfach in studienplan["pruefungsfaecher"]:
+        pruefungsfach["module"] = sorted(
+            pruefungsfach["module"], key=lambda m: m["name"]
+        )
+
 
 def main():
     text = cleanup_text(read_pdf(sys.argv[1]))
