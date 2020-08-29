@@ -377,6 +377,8 @@ def condense_studienplan(studienplan):
                 del studienplan["modulbeschreibungen"][i]
                 return modulbeschreibung
 
+        raise ValueError(f"Modulbeschreibung for {modul_name} not found!")
+
     def _get_semester_steop(lva):
         for semester, lvas in studienplan["semestereinteilung"].items():
             for i, l in enumerate(lvas):
@@ -391,13 +393,17 @@ def condense_studienplan(studienplan):
 
     for pruefungsfach in studienplan["pruefungsfaecher"]:
         for modul in pruefungsfach["module"]:
-            modulbeschreibung = _get_modulbeschreibung(modul["name"])
-            if not modulbeschreibung and modul["name"].startswith("Projekt aus "):
-                # The Modul "Projekt aus Software Engineering & Projektmanagement" is
-                # part of every Prüfungsfach. However, it's deleted from the
-                # Modulbeschreibung after beeing assigned to the first Prüfungsfach.
-                # That's OK.
-                continue
+            try:
+                modulbeschreibung = _get_modulbeschreibung(modul["name"])
+            except ValueError as e:
+                if modul["name"].startswith("Projekt aus "):
+                    # The Modul "Projekt aus Software Engineering & Projektmanagement"
+                    # is part of every Prüfungsfach. However, it's deleted from the
+                    # Modulbeschreibung after beeing assigned to the first Prüfungsfach.
+                    # That's OK.
+                    continue
+                raise e
+
             assert modulbeschreibung["regelarbeitsaufwand"]["ects"] == modul["ects"]
             modul["lernergebnisse"] = modulbeschreibung["lernergebnisse"]
             modul["lvas"] = modulbeschreibung["lvas"]
